@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DogSaver</title>
+    <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <style>
+        body img{
+            padding:0;
+            margin:0;
+
+        }
+        @font-face {
+            font-family: Viner Hand ITC;
+            src: url("font/vinerhanditc.TTF");
+        }
+        .btn-sign{
+            color: #4b89c2;
+            background-color: #373938;
+        }
+        .btn-sign:hover,.btn-sign:active{
+            color: #fff;
+            border-color: #fff;
+            border-radius: 18px;
+        }
+        .navbar{
+            min-height: 30px;
+        }
+        .navbar-toggle{
+            float: none;
+        }
+        .navbar-nav{
+            float: none;
+        }
+        .navbar-default .navbar-nav > .active > a,
+        .navbar-default .navbar-nav > .active > a:focus,
+        .navbar-default .navbar-nav > .active > a:hover{
+            color: #4b89c2;
+            background-color: #F8F8F8;
+        }
+        .navbar-default .navbar-nav > li > a:hover{
+            color: #4b89c2;
+        }
+        .navbar-default .navbar-nav > li > a{
+            color: #373737;
+        }
+        .nav > li{
+            width: 25%;
+            margin: 0 auto;
+        }
+        .nav > li > a{
+            font-size: 1.5em;
+        }
+        .panel-none{
+            border: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-default > .panel-heading{
+            background-color: #fff;
+            border: none;
+            text-align: center;
+        }
+        #photoWall>div{
+            padding: 0;
+            height: 100%;
+        }
+        .photoText{
+            float: left;
+            text-align: center;
+            display: table;
+        }
+        .photoText>div{
+            color: #fff;
+            font-size: 1.2em;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .photoText>div>p{
+            line-height: 60%;
+        }
+        .photo{
+            float: left;
+            overflow: hidden;
+        }
+        .photo>img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #blogs>div>a{
+            padding: 15% 0;
+        }
+        #blogs>div>a:hover{
+            background-color: #bfbfbf;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .thumbnail .caption h5{
+            color: #ccc;
+        }
+        .thumbnail .caption span{
+            margin-right: 0.5em;
+        }
+        .iw_poi_title {
+            color:#CC5522;
+            font-size:14px;
+            font-weight:bold;
+            overflow:hidden;
+            padding-right:13px;
+            white-space:nowrap;
+        }
+        .iw_poi_content {
+            font:12px arial,sans-serif;
+            overflow:visible;
+            padding-top:4px;
+            white-space:-moz-pre-wrap;
+            word-wrap:break-word;
+        }
+        #footer>div>div{
+            background-color: #373737;
+            padding: 0;
+            color: #fff;
+            font-size: 1.2em;
+            line-height: 300%;
+        }
+        @media screen and (max-width: 767px) {
+            .nav > li{
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+        @media screen and (max-width: 640px){
+            body{
+                font-size: 1em;
+            }
+            .photoText>div>p{
+                line-height: 60%;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+<body>
+<div id="header" class="container" style="width: 100%;">
+    <div class="row">
+        <img class="col-xs-12 col-sm-12 col-md-12 col-lg-12" src="images/header.png" style="padding: 0;"/>
+    </div>
+    <div class="navbar navbar-default" style="margin-left: -15px;margin-right: -15px;">
+        <div class="navbar-header" style="text-align: center;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse" >
+            <ul class="nav navbar-nav" style="margin: 0 auto;width:60%;text-align: center;">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Dogs</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">More</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="panel panel-default panel-none">
+                <div class="panel-heading">
+                    <h1 style="font-size: 2em;color: #4b89c2;">Introducing</h1>
+                    <img src="images/bone.png">
+                </div>
+                <div class="panel-body" style="font-size: 1.2em;line-height: 200%;">
+                    <p class="text-justify" style="word-spacing: 5px;">AKC is a registry of purebred dog pedigrees in the United States. Beyond maintaining its pedigree registry, this kennel club also promotes and sanctions events for purebred dogs, including the Westminster Kennel Club Dog Show, an annual event which predates the official forming of the AKC, the National Dog Show, and the AKC/Eukanuba National Championship. Unlike most other countries' kennels clubs, the AKC is not part of the Fédération Cynologique Internationale (World Canine Organization).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="width: 100%;">
+    <div class="row">
+        <div class="col-lg-12" style="padding: 0;">
+            <div class="panel panel-default panel-none">
+                <div class="panel-heading">
+                    <h1 style="font-size: 2em;color: #4b89c2;">Dogs</h1>
+                    <img src="images/bone.png">
+                </div>
+                <div id="photoWall" class="panel-body" style="padding: 0;margin: 30px 0;">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                        <div class="photoText" style="width: 100%;height: 33%;background-color: #b99477;">
+                            <div>
+                                <p class="text-center">Name:Poppy</p>
+                                <p class="text-center">Age:3</p>
+                                <p class="text-center">Species:xxx</p>
+                                <p class="text-center">Sex:♀</p>
+                            </div>
+                        </div>
+                        <div class="photo" style="width: 100%;height: 67%;">
+                            <img src="images/dog16.jpg">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                        <div class="photo" style="width: 100%;height: 50%">
+                            <img src="images/dog4.jpeg" style="width: 100%;height: 100%">
+                        </div>
+                        <div class="photoText" style="width: 100%;height: 25%;background-color: #c1c9d1;">
+                            <div>
+                                <p class="text-center">Name:Poppy</p>
+                                <p class="text-center">Sex:♀</p>
+                            </div>
+                            <div>
+                                <p class="text-center">Species:xxx</p>
+                                <p class="text-center">Age:3</p>
+                            </div>
+                        </div>
+                        <div class="photo" style="width: 50%;height: 25%">
+                            <img src="images/dog3.jpg">
+                        </div>
+                        <div class="photoText" style="width: 50%;height: 25%;background-color: #a48d64;">
+                            <div>
+                                <p class="text-center">Name:Poppy</p>
+                                <p class="text-center">Age:3</p>
+                                <p class="text-center">Species:xxx</p>
+                                <p class="text-center">Sex:♀</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                        <div class="photoText" style="width: 50%;height: 25%;background-color: #6f8693;">
+                            <div>
+                                <p class="text-center">Name:Poppy</p>
+                                <p class="text-center">Age:3</p>
+                                <p class="text-center">Species:xxx</p>
+                                <p class="text-center">Sex:♀</p>
+                            </div>
+                        </div>
+                        <div class="photo" style="width: 50%;height: 25%;">
+                            <img src="images/dog11.jpg">
+                        </div>
+                        <div class="photoText" style="width: 100%;height: 25%;background-color: #dfd297;">
+                            <div>
+                                <p class="text-center">Name:Poppy</p>
+                                <p class="text-center">Sex:♀</p>
+                            </div>
+                            <div>
+                                <p class="text-center">Species:xxx</p>
+                                <p class="text-center">Age:3</p>
+                            </div>
+                        </div>
+                        <div class="photo" style="width: 100%;height: 50%;">
+                            <img src="images/dog5.jpg">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                        <div class="photo" style="width: 100%;height: 67%;">
+                            <img src="images/dog13.jpg">
+                        </div>
+                        <div class="photoText" style="width: 100%;height: 33%;background-color: #b36b4a;">
+                            <div>
+                                <p class="text-center">Name:Poppy</p>
+                                <p class="text-center">Age:3</p>
+                                <p class="text-center">Species:xxx</p>
+                                <p class="text-center">Sex:♀</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div id="blogs" class="row">
+        <div class="col-sm-1 col-xs-1 hidden-xs" style="padding-left: 0;padding-right: 0;">
+            <a class="glyphicon glyphicon-chevron-left" style="font-size: 300%;margin-top: 300%;"></a>
+        </div>
+        <div class="col-sm-10" style="overflow: hidden;">
+            <div class="panel panel-default panel-none">
+                <div class="panel-heading">
+                    <h1 style="font-size: 2em;color: #4b89c2;">Blogs</h1>
+                    <img src="images/bone.png">
+                </div>
+                <ul class="panel-body list-unstyled">
+                    <li class="col-sm-4 col-xs-12">
+                        <div class="thumbnail">
+                            <img src="images/blog1.jpg" alt="blog1">
+                            <div class="caption">
+                                <h3>A</h3>
+                                <h5>John</h5>
+                                <p>information...</p>
+                                <p>information...</p>
+                                <p>2015-01-12</p>
+                                <span class="glyphicon glyphicon-thumbs-up">23</span>
+                                <span class="glyphicon glyphicon-eye-open">12</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-sm-4 col-xs-12">
+                        <div class="thumbnail">
+                            <img src="images/blog2.jpg" alt="blog2">
+                            <div class="caption">
+                                <h3>A</h3>
+                                <h5>John</h5>
+                                <p>information</p>
+                                <p>information...</p>
+                                <p>2015-01-12</p>
+                                <span class="glyphicon glyphicon-thumbs-up">23</span>
+                                <span class="glyphicon glyphicon-eye-open">12</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-sm-4 col-xs-12">
+                        <div class="thumbnail">
+                            <img src="images/blog3.jpg" alt="blog1">
+                            <div class="caption">
+                                <h3>A</h3>
+                                <h5>John</h5>
+                                <p>information</p>
+                                <p>information...</p>
+                                <p>2015-01-12</p>
+                                <span class="glyphicon glyphicon-thumbs-up">23</span>
+                                <span class="glyphicon glyphicon-eye-open">12</span>
+                            </div>
+                        </div>
+                    </li>
+                    <a class="visible-xs text-center" style="font-size: 1.5em;">Read More  >></a>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-1 col-xs-1 hidden-xs" style="padding-left: 0;padding-right: 0;">
+            <a class="glyphicon glyphicon-chevron-right" style="font-size: 300%;margin-top: 300%;"></a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="panel panel-default panel-none">
+                <div class="panel-heading">
+                    <h1 style="font-size: 2em;color: #4b89c2;">Contact</h1>
+                    <img src="images/bone.png">
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-6">
+                        <div style="width:100%;height:250px;border:#ccc solid 1px;" id="dituContent"></div>
+                    </div>
+                    <div class="col-lg-6" style="font-size: 1.5em;padding-top: 1em;">
+                        <p>TEL:028-3267567</p>
+                        <p>E-MAIL:1323244@gmail.com</p>
+                        <p>ADD:xxx STREET xxxxx</p>
+                        <p>ROUTE:xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer" class="container" style="width: 100%;margin-top: 5%;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <p class="text-center">© 2015 CFA Institute. All Rights Reserved.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="jquery.min.js"></script>
+<script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var oPhoto=document.getElementById("photoWall");
+    if(oPhoto.offsetWidth<769)
+    {
+        oPhoto.style.height=(oPhoto.offsetWidth)*0.44375*2+'px';
+    }
+    else
+    {
+        oPhoto.style.height=(oPhoto.offsetWidth)*0.44375+'px';
+    }
+</script>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(114.420149,30.514942);//定义一个中心点坐标
+        map.centerAndZoom(point,18);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+        map.addControl(ctrl_sca);
+    }
+
+    //标注点数组
+    var markerArr = [{title:"毛爷爷",content:"南大门毛爷爷雕像",point:"114.420009|30.514732",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+    ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+            var iw = createInfoWindow(i);
+            var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+            marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                borderColor:"#808080",
+                color:"#333",
+                cursor:"pointer"
+            });
+
+            (function(){
+                var index = i;
+                var _iw = createInfoWindow(i);
+                var _marker = marker;
+                _marker.addEventListener("click",function(){
+                    this.openInfoWindow(_iw);
+                });
+                _iw.addEventListener("open",function(){
+                    _marker.getLabel().hide();
+                })
+                _iw.addEventListener("close",function(){
+                    _marker.getLabel().show();
+                })
+                label.addEventListener("click",function(){
+                    _marker.openInfoWindow(_iw);
+                })
+                if(!!json.isOpen){
+                    label.hide();
+                    _marker.openInfoWindow(_iw);
+                }
+            })()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+
+    initMap();//创建和初始化地图
+</script>
+</body>
+</html>
